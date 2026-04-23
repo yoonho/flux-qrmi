@@ -1,6 +1,8 @@
 hello_jobtap.so:
-	gcc -shared -fPIC -o hello_jobtap.so hello_jobtap.c \
-		$(pkg-config --cflags --libs flux-core)
+	gcc -shared -fPIC -o hello_jobtap.so hello_jobtap.c $(pkg-config --cflags --libs flux-core)
+
+clean:
+	rm hello_jobtap.so
 
 # Load the plugin
 #   flux jobtap load ./hello_jobtap.so
