@@ -1,5 +1,11 @@
 # flux-hooks-for-qrmi
 
+Other QRMI "ports"
+* https://github.com/qiskit-community/spank-plugins - C plugins
+  * Sampler example - https://github.com/qiskit-community/spank-plugins/blob/main/demo/qrmi/jobs/run_sampler.sh
+  * Plugin - https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/spank_qrmi.c
+* https://github.com/ohtanim/pbs-hooks-for-qrmi - Python plugins
+
 Use Dockerfile to add network to flux-sched container
 
     docker build -t flux-sched-net:latest .
