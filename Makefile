@@ -8,6 +8,17 @@ reload:
 clean:
 	rm hello_jobtap.so
 
+# Shell plugin
+#   flux run -o userrc=$PWD/hello_shell.lua hostname
+#   flux submit -o userrc=$PWD/hello_shell.lua hostname
+#   flux job attach $(flux job last)
+#
+# Install qrmi
+#   python3 -m venv qrmi
+#   source qrmi/bin/activate
+#   pip install --upgrade pip
+#   pip install qrmi
+#
 # Load the plugin - need full path
 #   flux jobtap load $PWD/hello_jobtap.so
 #
