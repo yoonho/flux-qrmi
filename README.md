@@ -14,6 +14,21 @@ Use Dockerfile to add network to flux-sched container
     # Do not start Flux
     docker run -it --cap-add=NET_RAW --entrypoint bash flux-sched-net:latest
 
+Can pass environment variables to jobtap plugins with --setattr (see below and hello_jobtap.c)
+
+    flux submit --setattr=user.env.MY_VAR=test hostname
+
+Jobtap plugin vs Shell plugin
+
+| Aspect     | Jobtap plugin                                 | Shell plugin                            |
+| ---------- | --------------------------------------------- | --------------------------------------- |
+| Layer      | Job manager (broker)                          | Job shell (execution)                   |
+| Timing     | Before / during scheduling                    | During job execution                    |
+| Scope      | Global / cluster-wide                         | Per job / per task                      |
+| Purpose    | Control, policy, scheduling                   | Runtime environment, execution behavior |
+| Runs where | Broker daemon                                 | Compute nodes / job context             |
+| Analogy    | Slurm SPANK (scheduler side + submit plugins) | Slurm SPANK (task/exec side)            |
+
 How to add a resource
 
     # Get current resources
