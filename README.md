@@ -6,18 +6,6 @@ Other QRMI "ports"
   * Plugin - https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/spank_qrmi.c
 * https://github.com/ohtanim/pbs-hooks-for-qrmi - Python plugins
 
-Use Dockerfile to add network to flux-sched container
-
-    docker build -t flux-sched-net:latest .
-    # Start Flux, cap-add is needed for ping
-    docker run -it --cap-add=NET_RAW flux-sched-net:latest
-    # Do not start Flux
-    docker run -it --cap-add=NET_RAW --entrypoint bash flux-sched-net:latest
-
-Can pass environment variables to jobtap plugins with --setattr (see below and hello_jobtap.c)
-
-    flux submit --setattr=user.env.MY_VAR=test hostname
-
 Jobtap plugin vs Shell plugin
 
 | Aspect     | Jobtap plugin                                 | Shell plugin                            |
@@ -28,6 +16,10 @@ Jobtap plugin vs Shell plugin
 | Purpose    | Control, policy, scheduling                   | Runtime environment, execution behavior |
 | Runs where | Broker daemon                                 | Compute nodes / job context             |
 | Analogy    | Slurm SPANK (scheduler side + submit plugins) | Slurm SPANK (task/exec side)            |
+
+Can pass environment variables to jobtap plugins with --setattr
+
+    flux submit --setattr=user.env.MY_VAR=test hostname
 
 How to add a resource
 

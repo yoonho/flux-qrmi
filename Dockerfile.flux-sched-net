@@ -1,0 +1,22 @@
+FROM fluxrm/flux-sched:latest
+USER root
+RUN apt-get update
+RUN apt-get install -y iproute2 net-tools iputils-ping
+RUN apt-get install -y less doxygen
+# Remove after development stage!
+COPY --chown=fluxuser:fluxuser .git /home/fluxuser/.git/
+COPY --chown=fluxuser:fluxuser .ssh /home/fluxuser/.ssh/
+ENV MANPAGER="less -is"
+USER fluxuser
+
+# docker build -f Dockerfile.flux-sched-net -t flux-sched-net:latest .
+# docker run -it --cap-add=NET_RAW --name flux-sched-net flux-sched-net:latest
+#
+# docker run -it --cap-add=NET_RAW --entrypoint bash --name flux-sched-net flux-sched-net:latest
+# /usr/bin/flux start /bin/bash
+#
+# docker exec -it flux-python3.11 /bin/bash
+#
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# rustc seg faults due to emulation issue, base image from LLNL is amd64
+# --platform linux/arm64 does not help
