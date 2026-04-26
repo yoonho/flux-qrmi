@@ -15,7 +15,7 @@ Flux provides two plugin frameworks to support extensibility: jobtap and shell. 
 
 The initial QRMI integration focuses on using Flux as a "user-space" scheduler and running Quantum worklaods. The next step will extend the integration to Flux as the "system" scheduler and running hybrid Quantum-HPC workloads.
 
-Shell plugins will provide sufficient functionality for the initial implementation. A jobtap plugin could be required in the future for Flux as the "system" scheduler and Quantum system scheduling. In the pbs-hooks-for-qrmi repository, @ohtanim compared Spank plugins with PBS hooks. The table below adds Flux shell plugins to the comparison.
+Shell plugins will provide sufficient functionality for the initial implementation. A jobtap plugin could be required in the future for Flux as the "system" scheduler and Quantum system scheduling. In the [pbs-hooks-for-qrmi](https://github.com/ohtanim/pbs-hooks-for-qrmi) repository, [@ohtanim](https://github.com/ohtanim) compared Spank plugins with PBS hooks. The table below adds Flux shell plugins to the comparison.
 
 || Spank plugins | PBS Hooks | Shell plugins |
 | ---- | ---- | ---- | ---- |
@@ -51,7 +51,7 @@ Notes
   * flux_shell_setenvf updates jobspec for all tasks and environments
   * flux_cmd_setenf updates one task enviroment, must be called in task.{init,exit}
 * Other scheduler QRMI integrations
-  * https://github.com/qiskit-community/spank-plugins - C plugins
-    * Sampler example - https://github.com/qiskit-community/spank-plugins/blob/main/demo/qrmi/jobs/run_sampler.sh
-    * Plugin - https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/spank_qrmi.c
-  * https://github.com/ohtanim/pbs-hooks-for-qrmi - Python plugins
+  * [Spank plugins](https://github.com/qiskit-community/spank-plugins)
+    * [Sampler example](https://github.com/qiskit-community/spank-plugins/blob/main/demo/qrmi/jobs/run_sampler.sh)
+    * [Plugin source](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/spank_qrmi.c)
+  * [PBS hooks](https://github.com/ohtanim/pbs-hooks-for-qrmi)
