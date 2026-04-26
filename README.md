@@ -1,4 +1,4 @@
-# flux-hooks-for-qrmi
+# flux-qrmi
 
 Flux is a next-generation, open-source resource management and scheduling framework designed to handle the complexities of modern supercomputing through hierarchical management, graph-based scheduling, and a modular architecture. Flux's hierarchical management means Flux can run inside Flux or other schedulers like Slurm and PBS. Flux provides graph-based scheduling through resource graphs that describe how CPUs, GPUs, memory, storage, etc are connected. Flux's modular architecture allows services to be easily swapped and extended.
 
