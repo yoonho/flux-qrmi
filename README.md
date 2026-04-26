@@ -32,6 +32,19 @@ Shell plugins will provide sufficient functionality for the initial implementati
 
 The initial integration will follow the Spank and PBS pattern using shell.init and shell.exit plugins. Initially, resource configuration will pass through environment variables in the Flux shell. Later, qrmi_config.json support will be added. The shell.init plugin will set environment variables based on QRMI_QPU_RESOURCES, ie, prepend QPU name. The shell.init plugin will the acquire the QPUs and store acquisition tokens in environment variables. The shell.exit plugin will retrieve acquisition tokens from environment variables and release QPUs. Currently, the code in the repository is skeleton code.
 
+Files
+* Current
+  * Dockerfile.ubuntu24 - Current image, Flux installed via Spack
+  * Makefile - Build shell plugin
+  * qrmi_shell.c - Shell plugin
+  * run_sampler.sh - "Quantum job"
+* Old
+  * Makefile.jobtap - Build jobtap plugin (hello_jobtap)
+  * hello_jobtap.c - Jobtap plugin
+  * qrmi_acquire.py - Called from qrmi_shell.lua
+  * qrmi_shell.lua - Lua plugin, concluded Lua is not appropriate
+  * Dockerfile.flux-sched-net - Based on Flux image, could not install rustc due to emulation issues (amd64, not aarch64)
+
 Notes
 * Should there be a system qrmi_config.json and a user qrmi_config.json?
 * Two ways to set Flux shell environment variables
