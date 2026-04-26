@@ -1,10 +1,4 @@
-#import os
-#import sys
-#import json
-#import pbs
+import os
 
-#sys.path.insert(0, "/opt/pbs/python/site-packages")
-
-#from qrmi import QuantumResource, ResourceType
-
-print("Hello, World!")
+print(__file__ + ": Hello, World!")
+print(__file__ + ": " + os.getenv('QRMI_QPU_RESOURCES', 'error'))

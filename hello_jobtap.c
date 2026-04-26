@@ -63,54 +63,6 @@ static int validate_cb(flux_plugin_t *p,
     flux_log(h, LOG_INFO, "Hello! Job %ju was submitted. QRMI_IBM_QRS_ENDPOINT %s", (uintmax_t)id, endpoint);
 
     return 0;
-
-#if 0
-    // Hardcode configuration???
-    char* name = "ibm_marrakesh";
-    QrmiResourceType type = QRMI_RESOURCE_TYPE_QISKIT_RUNTIME_SERVICE;
-"QRMI_IBM_QRS_ENDPOINT": "https://quantum.cloud.ibm.com/api/v1",
-"QRMI_IBM_QRS_IAM_ENDPOINT": "https://iam.cloud.ibm.com",
-"QRMI_IBM_QRS_IAM_APIKEY": "AOEQdiezBVEdDpD3Qwz75j6pXpKFhxEf9nauu6jjDusA",
-"QRMI_IBM_QRS_SERVICE_CRN": "crn:v1:bluemix:public:quantum-computing:us-east:a/7a0a34127e6341618b52a2ec661054f5:ff0622bf-43ac-4cd0-994d-2a139cf81608::",
-"QRMI_IBM_QRS_SESSION_MODE": "batch"
-
-    char *acquisition_token = NULL;
-    bool is_accessible = false;
-    QrmiReturnCode rc;
-    const char *last_error = NULL;
-
-    void *qrmi = qrmi_resource_new(name, type);
-    if (qrmi == NULL) {
-        last_error = qrmi_get_last_error();
-        slurm_error("%s, %s", plugin_name, last_error);
-        spank_setenv(spank_ctxt, "QRMI_PLUGIN_ERROR", last_error, KEEP_IF_EXISTS);
-        qrmi_string_free((char *)last_error);
-        return NULL;
-    }
-
-    slurm_debug("%s, qrmi: %p", plugin_name, qrmi);
-    rc = qrmi_resource_is_accessible(qrmi, &is_accessible);
-    if ((rc != QRMI_RETURN_CODE_SUCCESS) || (is_accessible == false)) {
-        last_error = qrmi_get_last_error();
-        slurm_error("%s, %s is not accessible. %s", plugin_name, name, last_error);
-        spank_setenv(spank_ctxt, "QRMI_PLUGIN_ERROR", last_error, KEEP_IF_EXISTS);
-        qrmi_string_free((char *)last_error);
-        qrmi_resource_free(qrmi);
-        return NULL;
-    }
-    rc = qrmi_resource_acquire(qrmi, &acquisition_token);
-    qrmi_resource_free(qrmi);
-    if ((rc != QRMI_RETURN_CODE_SUCCESS) || (acquisition_token == NULL)) {
-        last_error = qrmi_get_last_error();
-        slurm_error("%s, resource acquisition failed: %s. %s", plugin_name, name, last_error);
-        spank_setenv(spank_ctxt, "QRMI_PLUGIN_ERROR", last_error, KEEP_IF_EXISTS);
-        qrmi_string_free((char *)last_error);
-        return NULL;
-    }
-
-    slurm_debug("%s, acquisition_token: %s", plugin_name, acquisition_token);
-    return _acquired_resource_create(name, type, acquisition_token);
-#endif
 }
 
 static int run_cb(flux_plugin_t *p,

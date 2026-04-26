@@ -19,4 +19,14 @@ USER fluxuser
 #
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # rustc seg faults due to emulation issue, base image from LLNL is amd64
-# --platform linux/arm64 does not help
+#
+# Explored adding a resource, first get current resources
+#   flux resource list
+# Get resource graph json
+#   flux resource R > backup.json
+# Remove Fluxion scheduler
+#   flux module remove sched-fluxion-qmanager; flux module remove sched-fluxion-resource; flux module remove sched-fluxion-feasibility
+# Reload resource graph json after modifying backup.json, eg, add gpu/qpu
+#   flux resource reload backup.json
+# Reload Fluxion scheduler
+#   flux module load sched-fluxion-resource; flux module load sched-fluxion-qmanager; flux module load sched-fluxion-feasibility
