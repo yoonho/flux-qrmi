@@ -1,8 +1,8 @@
-CFLAGS = -fPIC -Wall $(shell pkg-config --cflags flux-core)
+CFLAGS = -fPIC -Wall $(shell pkg-config --cflags flux-core) -I$(HOME)/qrmi
 LDFLAGS = -shared $(shell pkg-config --libs flux-core)
 
 qrmi_shell.so: qrmi_shell.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(HOME)/qrmi/target/release/libqrmi.a
 
 install:
 	install -D qrmi_shell.so $(shell flux config builtin shell_pluginpath)/qrmi_shell.so
@@ -14,7 +14,7 @@ clean:
 
 # C shell plugin (above)
 #   make; make install
-#   flux run --env=QRMI_QPU_RESOURCES="ibm_marrakash" --env=QRMI_IBM_QRS_ENDPOINT="https://quantum.cloud.ibm.com/api/v1" ./run_sampler.sh
+#   flux run --env=QRMI_QPU_RESOURCES="ibm_marrakesh" --env=QRMI_IBM_QRS_ENDPOINT="https://quantum.cloud.ibm.com/api/v1" ./run_sampler.sh
 #
 # Lua shell plugin - insufficient functionality
 #   flux run -o userrc=$PWD/hello_shell.lua hostname
