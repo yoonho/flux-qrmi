@@ -40,6 +40,14 @@ static int shell_init_cb(flux_plugin_t *p, const char *topic,
 	shell_log("[%s] ERROR: setenv failed for name\n", __func__);
 	return -1;
     }
+    if (set_shell_task_env(shell, "SLURM_JOB_QPU_RESOURCES", name) < 0) {
+	shell_log("[%s] ERROR: setenv failed for slurm name\n", __func__);
+	return -1;
+    }
+    if (set_shell_task_env(shell, "SLURM_JOB_QPU_TYPES", "qiskit-runtime-service") < 0) {
+	shell_log("[%s] ERROR: setenv failed for slurm qpu_types\n", __func__);
+	return -1;
+    }
     if (set_shell_task_env
 	(shell, "ibm_marrakesh_QRMI_IBM_QRS_ENDPOINT", endpoint) < 0) {
 	shell_log("[%s] ERROR: set_shell_task_env failed for endpoint\n",
@@ -79,6 +87,10 @@ static int shell_init_cb(flux_plugin_t *p, const char *topic,
 
     shell_log("[%s] getenv(QRMI_QPU_RESOURCES) %s\n", __func__,
 	      getenv("QRMI_QPU_RESOURCES"));
+    shell_log("[%s] getenv(SLURM_JOB_QPU_RESOURCES) %s\n", __func__,
+	      getenv("SLURM_JOB_QPU_RESOURCES"));
+    shell_log("[%s] getenv(SLURM_JOB_QPU_TYPES) %s\n", __func__,
+	      getenv("SLURM_JOB_QPU_TYPES"));
     shell_log("[%s] ibm_marrakesh_QRMI_IBM_QRS_ENDPOINT %s\n", __func__,
 	      flux_shell_getenv(shell,
 				"ibm_marrakesh_QRMI_IBM_QRS_ENDPOINT"));
