@@ -14,25 +14,3 @@ COPY --chown=fluxuser:fluxuser .git /home/fluxuser/.git/
 COPY --chown=fluxuser:fluxuser .ssh /home/fluxuser/.ssh/
 USER fluxuser
 WORKDIR /home/fluxuser
-
-# docker build -f Dockerfile.ubuntu24 -t ubuntu24:latest .
-# docker run -it --cap-add=NET_RAW --name ubuntu24 ubuntu24:latest
-# docker exec -it ubuntu24 /bin/bash
-#
-# Increased podman machine memory to 16GB for spack
-#   git clone https://github.com/spack/spack.git /home/fluxuser/spack
-#   source /home/fluxuser/spack/share/spack/setup-env.sh # Add to .bashrc
-#   spack --version
-#   spack compiler find
-#   spack install flux-sched +docs # about 20 mins...
-#   spack load flux-sched # Add to .bashrc
-#   flux --version
-#
-# QRMI PyPI install
-#   python3 -m venv .venv
-#   source ~/.venv/bin/activate
-#   pip install --upgrade pip
-#   pip install qrmi
-#   python3 -c "import qrmi; print(\"Hello\");"
-#
-# docker commit ... ubuntu24-flux-qrmi:dev

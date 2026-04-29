@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Use environment variables via run/submit now, jobspec later
-# ibm_marrekash_QRMI_IBM_QRS_ENDPOINT set by qrmi_shell plugin
+# Use environment variables via run/submit now, jobspec later?
 source $HOME/.venv/bin/activate
 python -c "import os, qrmi; \
            print(\"$0: QRMI_QPU_RESOURCES \" + os.getenv('QRMI_QPU_RESOURCES','missing')); \

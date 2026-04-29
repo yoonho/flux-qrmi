@@ -33,6 +33,8 @@ Shell plugins will provide sufficient functionality for the initial implementati
 The initial integration will follow the Spank and PBS pattern using shell.init and shell.exit plugins. Initially, resource configuration will pass through environment variables in the Flux shell. Later, qrmi_config.json support will be added. The shell.init plugin will set environment variables based on QRMI_QPU_RESOURCES, ie, prepend QPU name. The shell.init plugin will the acquire the QPUs and store acquisition tokens in environment variables. The shell.exit plugin will retrieve acquisition tokens from environment variables and release QPUs. Currently, the code in the repository is skeleton code.
 
 Files
+* README.md - This file
+* INSTALL.md - How to
 * Dockerfile.ubuntu24 - Current image, Flux installed via Spack
 * Makefile - Build shell plugin
 * qrmi_shell.c - Shell plugin
