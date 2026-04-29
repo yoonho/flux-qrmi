@@ -22,10 +22,13 @@ spack install flux-sched +docs # About 20 mins - go get some coffee
 spack load flux-sched # Add to .bashrc for future logins
 # Make sure Flux is installed
 flux --version
+# Install and test Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. $HOME/.cargo/env # Add to .bashrc for future logins
+rustc --version
 # Install and build the QRMI Rust/C API library
 git clone git@github.com:qiskit-community/qrmi.git
 cd qrmi
-. $HOME/.cargo/env # Add to .bashrc for future logins
 cargo clean
 cargo build --locked --release
 # Check for $HOME/qrmi/qrmi.h and $HOME/qrmi/target/release/libqrmi.a
