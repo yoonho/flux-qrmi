@@ -9,9 +9,9 @@ docker machine stop
 docker machine set --memory 16384
 docker machine start
 # Build the initial container
-docker build -f Dockerfile.ubuntu24 -t ubuntu24:latest .
+docker build -f Dockerfile.ubuntu24 -t ubuntu24-flux-qrmi:dev .
 # After docker run, you can use ctrl-P ctrl-Q to exit without stopping container
-docker run -it --cap-add=NET_RAW --name ubuntu24 ubuntu24:latest
+docker run -it --cap-add=NET_RAW --name ubuntu24-flux-qrmi ubuntu24-flux-qrmi:dev
 # To get another shell
 docker exec -it ubuntu24 /bin/bash
 # Get spack
@@ -41,7 +41,7 @@ pip install qrmi
 # Test install
 python3 -c "import qrmi; print(\"Hello\");"
 # Good time to commit changes, for example
-docker commit ubuntu24-flux-qrmi:dev
+docker commit ubuntu24-flux-qrmi localhost/ubuntu24-flux-qrmi:dev
 ```
 
 Second, follow the steps below to get access to IBM Quantum Platform systems. This is free for a limited amount of quantum system time (10 mins per 28 days).

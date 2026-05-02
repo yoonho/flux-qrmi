@@ -10,7 +10,6 @@ RUN useradd -m -s /bin/bash fluxuser
 RUN echo "fluxuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/fluxuser
 RUN chmod 440 /etc/sudoers.d/fluxuser
 # Remove after development stage!
-COPY --chown=fluxuser:fluxuser .git /home/fluxuser/.git/
 COPY --chown=fluxuser:fluxuser .ssh /home/fluxuser/.ssh/
 USER fluxuser
 WORKDIR /home/fluxuser
