@@ -2,7 +2,6 @@ First, create a container with Dockerfile.ubuntu24. I use podman aliased to dock
 
 ```
 # Development convenience
-cp -r $HOME/.git .
 cp -r $HOME/.ssh .
 # Increase podman memory to 16GB for Spack/Flux
 docker machine stop
