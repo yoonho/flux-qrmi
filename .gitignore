@@ -45,6 +45,9 @@ qrmi_config.json
 *.idb
 *.pdb
 
+# Environment 
+.env
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
