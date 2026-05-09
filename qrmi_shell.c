@@ -36,6 +36,9 @@ static int shell_init_cb(flux_plugin_t *p, const char *topic,
     const char *session_mode =
 	flux_shell_getenv(shell, "QRMI_IBM_QRS_SESSION_MODE");
 
+    // Nothing to do if QRMI_QPU_RESOURCES was not set
+    if (name == NULL) return 0;
+
     if (setenv("QRMI_QPU_RESOURCES", name, 1) < 0) {
 	shell_log("[%s] ERROR: setenv failed for name\n", __func__);
 	return -1;
@@ -168,7 +171,7 @@ static int shell_init_cb(flux_plugin_t *p, const char *topic,
 static int task_init_cb(flux_plugin_t *p, const char *topic,
 			flux_plugin_arg_t *args, void *data)
 {
-    shell_log("[%s] Hello\n", __func__);
+//    shell_log("[%s] Hello\n", __func__);
     return 0;
 }
 
@@ -180,12 +183,8 @@ static int shell_exit_cb(flux_plugin_t *p, const char *topic,
     const char *acquisition_token =
 	getenv("ibm_marrakesh_QRMI_JOB_ACQUISITION_TOKEN");
 
-    if (name == NULL || acquisition_token == NULL) {
-	shell_log
-	    ("[%s] ERROR: QRMI_QPU_RESOURCES %s, ibm_marrakesh_QRMI_JOB_ACQUISITION_TOKEN %s\n",
-	     __func__, name, acquisition_token);
-	return -1;
-    }
+    // Nothing to do if QRMI_QPU_RESOURCES was not set
+    if (name == NULL) return 0;
 
     shell_log("[%s] QRMI_QPU_RESOURCES %s\n", __func__, name);
     shell_log("[%s] ibm_marrakesh_QRMI_IBM_QRS_ENDPOINT %s\n", __func__,
